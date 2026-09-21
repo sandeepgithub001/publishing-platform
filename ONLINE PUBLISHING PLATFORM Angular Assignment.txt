@@ -1,0 +1,107 @@
+# Reframed Requirement: Online Publishing Platform
+
+## Project Overview
+Build an Angular-based online publishing platform that enables authors to create, manage, publish, and share articles, while allowing readers to discover content, engage in discussions, and interact with authors. The application should provide a modern, responsive, and user-friendly experience for both writers and readers.
+
+## Core Functional Requirements
+
+### 1. User Authentication
+- Implement social login using a free authentication service such as Auth0 or Firebase.
+- Allow users to sign in using social accounts such as Google and Facebook.
+- Support a smooth and secure login/logout experience.
+
+### 2. Home Page and Article Listing
+- Display a list of articles with:
+  - Title
+  - Thumbnail image
+  - Short description
+  - Author name
+  - Publish date
+- Support pagination for efficient browsing of large article lists.
+- Allow sorting by:
+  - Latest
+  - Most popular
+  - Editor’s pick
+- Include search functionality to find articles by:
+  - Keyword
+  - Author name
+- Highlight featured or editor-selected articles at the top of the home page.
+
+### 3. Explore Authors and Articles
+- Create an author directory listing all authors with:
+  - Profile image
+  - Short bio
+- Include search functionality to find authors by name.
+- Allow users to explore author profiles and browse their published content.
+
+### 4. Article Details Page
+- Display full article content including:
+  - Title
+  - Author name
+  - Publish date
+  - Full article body
+- Show author bio on the article page.
+- Display other articles written by the same author.
+- Show related articles at the end of the page to encourage content discovery.
+
+### 5. Comments and Interaction
+- Enable users to post comments on articles.
+- Support nested/threaded comments (replies to comments).
+- Allow sorting of comments by:
+  - Newest
+  - Oldest
+  - Most liked
+
+### 6. Create and Publish Articles
+- Provide a rich text editor with formatting options including:
+  - Bold
+  - Italic
+  - Underline
+  - Bulleted and numbered lists
+- Allow authors to add:
+  - Images
+  - Videos
+  - Links
+- Support drafting articles before publishing.
+- Allow authors to save articles as drafts.
+- Support scheduling posts for future publication.
+
+### 7. Bonus Feature: Tags
+- Let authors add tags to articles.
+- Allow users to search and browse articles by tags.
+- Display popular tags.
+- Provide tag-based article exploration.
+
+## Deliverables
+- Fully functional web application matching the described requirements.
+- Unit tests for at least one major component and one service.
+- GitHub repository containing the project source code without node_modules.
+- Deployed frontend application available through a free hosting provider.
+- README file containing:
+  - GitHub repository link
+  - Live deployment link
+  - User credentials for testing
+  - Mention bonus features if implemented
+
+## Technical Expectations
+- Use Angular CLI updated to the latest stable version.
+- Use a CSS preprocessor.
+- Include a web worker for at least one background task.
+- Follow best practices in application architecture, state management, performance optimization, and responsive UI design.
+
+## Evaluation Criteria
+- Application deployment and functionality
+- Architecture and project structure
+- State management quality
+- Performance optimization
+- Ease of usability
+- Code quality and maintainability
+- Bonus points for additional features and thoughtful UX improvements
+
+## Final Note
+The platform should be visually appealing, responsive, and intuitive, with a polished user experience for both publishers and readers. Creative enhancements beyond the base requirements are encouraged.
+
+If you want, I can also convert this into:
+- a more formal assignment brief,
+- a student-friendly version,
+- or a Jira-style requirement document with acceptance criteria.
