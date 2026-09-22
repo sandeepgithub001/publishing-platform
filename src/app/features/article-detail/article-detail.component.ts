@@ -56,7 +56,7 @@ type DetailState = 'loading' | 'ready' | 'not-found' | 'restricted' | 'scheduled
             <img class="avatar" [src]="article()!.authorPhoto || 'https://i.pravatar.cc/72?u=' + article()!.authorId" alt="" referrerpolicy="no-referrer" />
             <div>
               <a [routerLink]="['/authors', article()!.authorId]"><strong>{{ article()!.authorName }}</strong></a>
-              <p class="muted">{{ bio() || 'Writing on PubHub.' }}</p>
+              <p class="muted">{{ bio() || 'Writing on Online Publishing Platform.' }}</p>
             </div>
             <div class="engage">
               <button class="btn" (click)="like()" [disabled]="!auth.isSignedIn()" [class.liked]="isLiked()">♥ {{ article()!.likeCount }}</button>
@@ -123,7 +123,7 @@ export class ArticleDetailComponent {
       return;
     }
     this.article.set(article);
-    this.title.setTitle(`${article.title} — PubHub`);
+    this.title.setTitle(`${article.title} — Online Publishing Platform`);
 
     const isOwner = article.authorId === this.auth.user()?.uid;
     const privileged = isOwner || this.auth.isEditor();

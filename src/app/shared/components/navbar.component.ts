@@ -19,7 +19,7 @@ interface SearchHitView {
   template: `
     <header class="nav">
       <div class="container nav-inner">
-        <a routerLink="/home" class="brand">Pub<span>Hub</span></a>
+        <a routerLink="/home" class="brand">Online <span>Publishing Platform</span></a>
         <nav class="links" aria-label="Primary">
           <a routerLink="/home" routerLinkActive="active">Home</a>
           <a routerLink="/discover" routerLinkActive="active">Discover</a>

@@ -16,6 +16,6 @@ import { ToastContainerComponent } from './shared/components/toast-container.com
   `,
 })
 export class App {
-  protected readonly title = signal('PubHub');
+  protected readonly title = signal('Online Publishing Platform');
 }
 

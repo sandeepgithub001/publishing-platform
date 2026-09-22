@@ -196,11 +196,11 @@ service cloud.firestore {
     function myRole()    { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role; }
     function isEditor()  { return signedIn() && myRole() == 'editor'; }
 
-    // Publicly visible = published AND its publish moment has passed
     function publicArticle(a) {
       return a.status == 'published'
         && (!('publishAt' in a) || a.publishAt <= request.time);
     }
+
     function publicArticleById(id) {
       return publicArticle(get(/databases/$(database)/documents/articles/$(id)).data);
     }
@@ -208,7 +208,7 @@ service cloud.firestore {
     match /users/{uid} {
       allow read: if true;
       allow create: if isSelf(uid)
-        && request.resource.data.role in ['reader', 'author'];   // no self-editor
+        && request.resource.data.role in ['reader', 'author'];
       allow update: if (isSelf(uid) && (
           request.resource.data.role == resource.data.role ||
           (resource.data.role == 'reader' && request.resource.data.role == 'author')))
@@ -224,7 +224,7 @@ service cloud.firestore {
       allow create: if signedIn()
         && request.resource.data.authorId == request.auth.uid
         && request.resource.data.status in ['draft', 'published']
-        && request.resource.data.isFeatured == false;            // only editors feature
+        && request.resource.data.isFeatured == false;
 
       allow update: if (signedIn()
                         && resource.data.authorId == request.auth.uid
@@ -244,22 +244,21 @@ service cloud.firestore {
         && publicArticleById(request.resource.data.articleId)
         && request.resource.data.message.size() > 0
         && request.resource.data.message.size() <= 2000;
-      allow update: if signedIn() && resource.data.authorId == request.auth.uid; // like toggles
+      allow update: if signedIn() && resource.data.authorId == request.auth.uid;
       allow delete: if signedIn() && resource.data.authorId == request.auth.uid
         || isEditor();
     }
 
     match /tags/{tagId} {
       allow read: if true;
-      // Pragmatic free-tier choice: counters maintained by the publishing client
-      // via FieldValue.increment inside a batch. Production: Cloud Function.
       allow write: if signedIn();
     }
 
-    match /users/{uid}/bookmarks/{articleId} {   // bonus
+    match /users/{uid}/bookmarks/{articleId} {
       allow read, write: if isSelf(uid);
     }
-    match /users/{uid}/following/{authorUid} {   // bonus
+
+    match /users/{uid}/following/{authorUid} {
       allow read, write: if isSelf(uid);
     }
   }

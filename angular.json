@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "pubhub-client": {
+    "online-publishing-platform": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -91,10 +91,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pubhub-client:build:production"
+              "buildTarget": "online-publishing-platform:build:production"
             },
             "development": {
-              "buildTarget": "pubhub-client:build:development"
+              "buildTarget": "online-publishing-platform:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,7 +104,7 @@
           "options": {
             "runner": "vitest",
             "tsConfig": "tsconfig.spec.json",
-            "buildTarget": "pubhub-client:build:development"
+            "buildTarget": "online-publishing-platform:build:development"
           }
         }
       }

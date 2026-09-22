@@ -19,7 +19,7 @@ export const firebaseConfig: FirebaseOptions = {
 export const environment = {
   production: false,
   firebaseConfig,
-  useEmulators: true,
+  useEmulators: false,
   emulatorPorts: { auth: 9099, firestore: 8080, storage: 9199 },
   demoCredentials: {
     author: { email: 'author@demo.com', password: 'Author@123!' },

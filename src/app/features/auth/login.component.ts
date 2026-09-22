@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
   template: `
     <div class="login-wrap">
       <div class="card login-card">
-        <h1>Welcome to PubHub</h1>
+        <h1>Welcome to Online Publishing Platform</h1>
         <p class="muted">Sign in to comment, like, and write. Reading works without an account.</p>
 
         <button class="btn google" (click)="signIn('google')" [disabled]="busy()">

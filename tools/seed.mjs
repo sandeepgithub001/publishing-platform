@@ -11,6 +11,8 @@
  *
  * Data mirrors src/app/core/services/seed-*.ts — keep both in sync.
  */
+import fs from 'fs';
+import path from 'path';
 import { initializeApp } from 'firebase/app';
 import {
   connectAuthEmulator,
@@ -42,14 +44,36 @@ const USE_EMULATORS = args.includes('--emulator');
 const APPLY_FEATURED = args.includes('--feature');
 const STATUS_ONLY = args.includes('--status');
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyBtNv5_sbuH3mQv1hXTCFpsv6hKbU5Y2Lw',
-  authDomain: 'onlinepublishing-d632d.firebaseapp.com',
-  projectId: 'onlinepublishing-d632d',
-  storageBucket: 'onlinepublishing-d632d.firebasestorage.app',
-  messagingSenderId: '177638171281',
-  appId: '1:177638171281:web:86894611054943c3ab5530',
-};
+function readFirebaseConfigFromEnvironment() {
+  const envPath = path.resolve(process.cwd(), 'src/environments/environment.ts');
+  const text = fs.readFileSync(envPath, 'utf8');
+
+  const apiKey = text.match(/apiKey:\s*["']([^"']+)["']/)?.[1];
+  const authDomain = text.match(/authDomain:\s*["']([^"']+)["']/)?.[1];
+  const databaseURL = text.match(/databaseURL:\s*["']([^"']+)["']/)?.[1];
+  const projectId = text.match(/projectId:\s*["']([^"']+)["']/)?.[1];
+  const storageBucket = text.match(/storageBucket:\s*["']([^"']+)["']/)?.[1];
+  const messagingSenderId = text.match(/messagingSenderId:\s*["']([^"']+)["']/)?.[1];
+  const appId = text.match(/appId:\s*["']([^"']+)["']/)?.[1];
+  const measurementId = text.match(/measurementId:\s*["']([^"']+)["']/)?.[1];
+
+  if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId || !appId) {
+    throw new Error(`Could not parse Firebase config from ${envPath}`);
+  }
+
+  return {
+    apiKey,
+    authDomain,
+    databaseURL,
+    projectId,
+    storageBucket,
+    messagingSenderId,
+    appId,
+    ...(measurementId ? { measurementId } : {}),
+  };
+}
+
+const firebaseConfig = readFirebaseConfigFromEnvironment();
 
 const FEATURED_SLUGS = ['signals-change-how-we-build', 'shipping-side-projects'];
 const DAY = 86_400_000;

@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   template: `
     <footer class="footer">
       <div class="container footer-inner">
-        <span>PubHub — a demo publishing platform built with Angular + Firebase.</span>
+        <span>Online Publishing Platform — a demo publishing platform built with Angular + Firebase.</span>
         <nav>
           <a routerLink="/home">Home</a>
           <a routerLink="/discover">Discover</a>

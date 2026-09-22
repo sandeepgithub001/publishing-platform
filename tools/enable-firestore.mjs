@@ -7,7 +7,16 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 
-const PROJECT_ID = 'onlinepublishing-d632d';
+const ENV_FILE = path.resolve(process.cwd(), 'src/environments/environment.ts');
+
+function readProjectId() {
+  const text = fs.readFileSync(ENV_FILE, 'utf8');
+  const match = text.match(/projectId:\s*["']([^"']+)["']/);
+  if (!match) throw new Error(`Could not find projectId in ${ENV_FILE}`);
+  return match[1];
+}
+
+const PROJECT_ID = readProjectId();
 
 // Locate the firebase-tools credential file (same logic as firebase-tools)
 const searchDirs = [
