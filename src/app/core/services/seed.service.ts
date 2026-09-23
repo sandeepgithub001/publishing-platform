@@ -68,7 +68,7 @@ export class SeedService {
       const author = byKey.get(c.authorKey);
       if (!target || !author) continue;
       const parentCommentId = c.replyTo ? rootComments.get(c.articleSlug) ?? null : null;
-      const ref = doc(this.db, 'comments');
+      const ref = doc(collection(this.db, 'comments'));
       const batch = writeBatch(this.db);
       batch.set(ref, {
         articleId: target.id,
@@ -154,7 +154,7 @@ export class SeedService {
       : a.scheduledDaysFromNow
         ? Timestamp.fromMillis(now + a.scheduledDaysFromNow * 86_400_000)
         : Timestamp.fromMillis(now - a.daysAgo * 86_400_000);
-    const ref = doc(this.db, 'articles');
+    const ref = doc(collection(this.db, 'articles'));
     await setDoc(ref, {
       authorId: uid,
       slug: a.slug,
